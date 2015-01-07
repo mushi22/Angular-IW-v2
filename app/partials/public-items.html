@@ -1,0 +1,97 @@
+<div>
+    <tabs>
+        <pane heading="Public Books">
+          <div id="books-panel">
+            <h2>List of all Data Sets </h2>
+            <div>
+              Search: <input ng-model="query1">
+            </div>
+            </br>
+            <table class="table">
+              <tr>
+                <th>Name</th>
+                <th>Status</th>
+                <th>Location</th>
+                <th>Owner</th>
+                <th>Requests</th>
+                <th>&nbsp;</th>
+              </tr>  
+              <tr ng-repeat="book in bookList | filter:query1 | orderBy:orderProp">
+                <td>{{ book.get('name') }}</td>
+                <td>{{ book.get('status') }}</td>
+                <td>{{ book.get('location') }}</td>
+                <td>{{ book.get('owner') }}</td>
+                <td>{{ book.get('requestCount') }}</td>
+                <td ng-show="book.get('status') == 'Available'"><button class="btn" ng-click="borrow(book)">Borrow</button></td>
+              </tr>
+            </table>
+          </div>
+        </pane>
+       <!-- <pane heading="My Books">
+          <p ng-show="myBooks.length == 0">You have no books</p>
+          <div ng-show="myBooks.length > 0">
+            <h2 >List of all your Books</h2>
+            <div>
+              Search: <input ng-model="query2">
+            </div>
+            </br>
+            <table class="table">
+              <tr>
+                <th>Name</th>
+                <th>Status</th>
+                <th>Location</th>
+                <th>Requests</th>
+                <th>&nbsp;</th>
+              </tr>  
+              <tr ng-repeat="book in myBooks | filter:query2">
+                <td>{{ book.get('name') }}</td>
+                <td>{{ book.get('status') }}</td>
+                <td>{{ book.get('location') }}</td>
+                <td>{{ book.get('requestCount') }}</td>
+                <td>
+                  <ul>
+                    <li><a href="">Edit</a></li>
+                    <li ng-show="book.get('status') == 'Available'"><a href="">Delete</a></li>
+                  </ul>
+                </td>
+              </tr>
+            </table>
+          </div>
+          </br>
+          <button class="btn" ng-click="add()">Add Book</button>
+        </pane>
+          <pane heading="Book Requests">
+          <p ng-show="requests.length == 0">You have no requests</p>
+          <div ng-show="requests.length > 0">
+            <h2 >List of all your Requests</h2>
+            </br>
+            <table class="table">
+              <tr>
+                <th>Book</th>
+                <th>Borrower</th>
+                <th>Status</th>
+                <th>Date Borrowed</th>
+                <th>Date Returned</th>
+                <th>&nbsp;</th>
+              </tr>  
+              <tr ng-repeat="request in requests">
+                <td>{{ request.get('book') }}</td>
+                <td>{{ request.get('borrower') }}</td>
+                <td>{{ request.get('status') }}</td>
+                <td>{{ request.get('date_borrowed') | date:"MM/dd/yyyy @ h:mma" }}</td>
+                <td>{{ request.get('date_returned') | date:"MM/dd/yyyy @ h:mma" }}</td>
+                <td>
+                  <button class="btn" ng-show="request.get('status') == 'Pending'" ng-click="accept(request)">Accept</button>
+                  <button class="btn" ng-show="request.get('status') == 'Pending'" ng-click="reject(request)">Reject</button>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </pane>-->
+    </tabs>
+    <div class="row-fluid">
+      </br>
+      </br>
+      <button class="btn" ng-click="logout()">Logout</button>
+    </div>
+</div>
