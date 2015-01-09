@@ -10,12 +10,19 @@ angular.module('bookappServices', ['ngResource'])
     // Cache current logged in user
     var loggedInUser;
 
+    var user = Parse.User.current();
+
     // Cache list of user's books
     var myBooks = [];
+    
+    //Caoche list of users dataSets
+    var myDataSet = [];
 
     // Define parse model and collection for Book records
     var Book = Parse.Object.extend("Book");
     var BookCollection = Parse.Collection.extend({ model:Book });
+    
+    var Dataset = Parse.Object.extend("Dataset");
 
     // Define parse model and collection for BookRequest records
     var BookRequest = Parse.Object.extend("BookRequest");
@@ -43,7 +50,7 @@ angular.module('bookappServices', ['ngResource'])
       },
 
       // Login a user using Facebook
-      FB_login : function FB_login(callback) {
+  /*    FB_login : function FB_login(callback) {
         Parse.FacebookUtils.logIn(null, {
           success: function(user) {
             if (!user.existed()) {
@@ -58,7 +65,7 @@ angular.module('bookappServices', ['ngResource'])
             alert("User cancelled the Facebook login or did not fully authorize.");
           }
         });
-      },
+      }, */
 
       // Register a user
       signUp : function signUp(username, password, callback) {
@@ -79,13 +86,16 @@ angular.module('bookappServices', ['ngResource'])
         Parse.User.logOut();
       },
 
+    
+        
+        
       // Get all public books
       getBooks : function getBooks(callback) {
         // Create a new Parse Query to search Book records by visibility
-        var query = new Parse.Query(Book);
-        query.equalTo("visibility", "public");
-        query.notEqualTo("owner", loggedInUser.get('username'));
-        query.descending("requestCount");
+        var query = new Parse.Query(Dataset);
+        //query.equalTo("visibility", "public");
+      //  query.notEqualTo("datasetOwner", loggedInUser.get('username'));
+       // query.descending("requestCount");
         // use the find method to retrieve all public books
         query.find({
           success : function(results) {
@@ -95,10 +105,32 @@ angular.module('bookappServices', ['ngResource'])
             alert("Error: " + error.message);
           }
         });
-      },
+      }, 
 
+      // Get all datasets belonging to logged in user
+      getMyDataSet : function getMyDataSet(callback) {
+        // Create a new Parse Query to search Book records by ownerid
+        var query = new Parse.Query(Dataset);
+          console.log(user);
+        query.equalTo("datasetOwner", user);
+        // use the find method to retrieve all books
+        query.find({
+          success : function(results) {
+         //   for (var i=0; i<results.length; i++)
+           // { 
+             // myDataSet[i]  = results[i].get('datasetName');
+            //}
+              console.log(results);
+            callback(results);
+          },
+          error: function(error) {
+            alert("Error: " + error.message);
+          }
+        });
+      },
+        
       // Get all books belonging to logged in user
-      getMyBooks : function getMyBooks(callback) {
+    /*  getMyBooks : function getMyBooks(callback) {
         // Create a new Parse Query to search Book records by ownerid
         var query = new Parse.Query(Book);
         query.equalTo("owner", loggedInUser.get('username'));
@@ -226,7 +258,7 @@ angular.module('bookappServices', ['ngResource'])
             alert("Error: " + error.message);
           }
         });
-      },
+      },*/
 
       // Get current logged in user
       getUser : function getUser() {

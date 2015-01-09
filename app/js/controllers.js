@@ -42,6 +42,7 @@ function MainCtrl($scope, $location, ParseService) {
 
   // Fetch the list of public books from the backend service
   $scope.getBooks = function() {
+
     ParseService.getBooks(function(results) {
       $scope.$apply(function() {
         $scope.bookList = results;
@@ -49,6 +50,17 @@ function MainCtrl($scope, $location, ParseService) {
     });
   }
 
+   // Fetch the list datasets from the backend service
+  $scope.getMyDataSet = function() {
+    ParseService.getMyDataSet(function(results) {
+      $scope.$apply(function() {
+          console.log(results);
+        $scope.myDataSets = results;
+      })
+    });
+  }
+  
+  /*
   // Fetch the list books from the backend service
   $scope.getMyBooks = function() {
     ParseService.getMyBooks(function(results) {
@@ -105,7 +117,7 @@ function MainCtrl($scope, $location, ParseService) {
     ParseService.addBook($scope.name, $scope.status, $scope.visibility, $scope.location, function() {
       $location.path('/items');
     });
-  }
+  }*/
 
   // logs the user out and re-direct to login page
   $scope.logout = function() {
@@ -118,10 +130,12 @@ function MainCtrl($scope, $location, ParseService) {
    */
   $scope.bookList = [];
   $scope.myBooks = [];
+  $scope.myDataSets = [];    
   $scope.requests = [];
   $scope.init();
   $scope.getBooks();
-  $scope.getMyBooks();
-  $scope.getRequests();
+  $scope.getMyDataSet();    
+  //$scope.getMyBooks();
+  //$scope.getRequests();
 }
 MainCtrl.$inject = ['$scope', '$location', 'ParseService']

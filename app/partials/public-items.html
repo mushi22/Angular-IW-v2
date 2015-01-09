@@ -17,19 +17,20 @@
                 <th>&nbsp;</th>
               </tr>  
               <tr ng-repeat="book in bookList | filter:query1 | orderBy:orderProp">
-                <td>{{ book.get('name') }}</td>
-                <td>{{ book.get('status') }}</td>
-                <td>{{ book.get('location') }}</td>
-                <td>{{ book.get('owner') }}</td>
+                <td>{{ book.get('datasetName') }}</td>
+                <td>{{ book.get('datasetNotes') }}</td>
+                <td>{{ book.get('datasetOwner') }}</td>
+                <!--<td>{{ book.get('owner') }}</td>
                 <td>{{ book.get('requestCount') }}</td>
-                <td ng-show="book.get('status') == 'Available'"><button class="btn" ng-click="borrow(book)">Borrow</button></td>
+                <td ng-show="book.get('status') == 'Available'"><button class="btn" ng-click="borrow(book)">Borrow</button></td>-->
               </tr>
             </table>
           </div>
         </pane>
-       <!-- <pane heading="My Books">
-          <p ng-show="myBooks.length == 0">You have no books</p>
-          <div ng-show="myBooks.length > 0">
+    <!-- data sets start here -->
+        <pane heading="My Books">
+          <p ng-show="myDataSets.length == 0">You have no books</p>
+          <div ng-show="myDataSets.length > 0">
             <h2 >List of all your Books</h2>
             <div>
               Search: <input ng-model="query2">
@@ -43,11 +44,11 @@
                 <th>Requests</th>
                 <th>&nbsp;</th>
               </tr>  
-              <tr ng-repeat="book in myBooks | filter:query2">
-                <td>{{ book.get('name') }}</td>
-                <td>{{ book.get('status') }}</td>
-                <td>{{ book.get('location') }}</td>
-                <td>{{ book.get('requestCount') }}</td>
+              <tr ng-repeat="data in myDataSets | filter:query2">
+                <td>{{ data.get('datasetName') }}</td>
+                <td>{{ data.get('datasetNotes') }}</td>
+               <!-- <td>{{ book.get('location') }}</td>
+                <td>{{ book.get('requestCount') }}</td> -->
                 <td>
                   <ul>
                     <li><a href="">Edit</a></li>
@@ -60,7 +61,7 @@
           </br>
           <button class="btn" ng-click="add()">Add Book</button>
         </pane>
-          <pane heading="Book Requests">
+        <!--  <pane heading="Book Requests">
           <p ng-show="requests.length == 0">You have no requests</p>
           <div ng-show="requests.length > 0">
             <h2 >List of all your Requests</h2>
