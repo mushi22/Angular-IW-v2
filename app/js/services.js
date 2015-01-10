@@ -23,7 +23,7 @@ angular.module('bookappServices', ['ngResource'])
     var BookCollection = Parse.Collection.extend({ model:Book });
     
     var Dataset = Parse.Object.extend("Dataset");
-
+    var Datapoint = Parse.Object.extend("Datapoint");
     // Define parse model and collection for BookRequest records
     var BookRequest = Parse.Object.extend("BookRequest");
 
@@ -111,7 +111,7 @@ angular.module('bookappServices', ['ngResource'])
       getMyDataSet : function getMyDataSet(callback) {
         // Create a new Parse Query to search Book records by ownerid
         var query = new Parse.Query(Dataset);
-          console.log(user);
+          //console.log(user);
         query.equalTo("datasetOwner", user);
         // use the find method to retrieve all books
         query.find({
@@ -120,7 +120,7 @@ angular.module('bookappServices', ['ngResource'])
            // { 
              // myDataSet[i]  = results[i].get('datasetName');
             //}
-              console.log(results);
+            //  console.log(results);
             callback(results);
           },
           error: function(error) {
@@ -128,6 +128,24 @@ angular.module('bookappServices', ['ngResource'])
           }
         });
       },
+        
+      getmyDataPoint: function getMyDataPoint(datapointid, callback) {
+          
+          var query = new Parse.Query(Datapoint);
+          query.equalTo("inDataset". datapointid);
+          console.log("query set to datapoint");
+          query.find({
+              success: function(results) {
+                  console.log("success");
+                  callback(results);
+              },
+              error: function(error) {
+                  alert("Error: no datapoint found " + error.message);
+              }
+            
+          });
+    },
+                     
         
       // Get all books belonging to logged in user
     /*  getMyBooks : function getMyBooks(callback) {
