@@ -54,33 +54,33 @@ function MainCtrl($scope, $location, ParseService) {
   $scope.getMyDataSet = function() {
     ParseService.getMyDataSet(function(results) {
       $scope.$apply(function() {
-          console.log(results);
+        //  console.log(results);
         $scope.myDataSets = results;
       })
     });
   }
   
-  $scope.getDataPoint = function(datapoint) {
+  $scope.getDataPoint = function(dataset) {
     console.log("In Data Point");
-      console.log(datapoint);
-      ParseService.getmyDataPoint(datapoint, function(result) {
-          alert("datapoint recieved");
+      console.log(dataset);
+      ParseService.getmyDataPoint(dataset, function(results) {
+          console.log("datapoint recieved");
           $scope.$apply(function(){
-              console.log(result);
-              datapoint = result;
+              console.log(results);
+                //$scope.myDataSets2 = results;
           })
       });
   }
 
-  $scope.testing = function () {
+/*  $scope.testing = function () {
     console.log("testing");
     ParseService.getMyDataSet(function(results) {
       $scope.$apply(function() {
-          console.log(results);
+       //   console.log(results);
         $scope.myDataSets2 = results;
       })
     });
-  }
+  }*/
 
   /*
   // Fetch the list books from the backend service
@@ -158,7 +158,7 @@ function MainCtrl($scope, $location, ParseService) {
   $scope.init();
   $scope.getBooks();
   $scope.getMyDataSet();
-  $scope.testing();
+ // $scope.testing();
   //$scope.getMyBooks();
   //$scope.getRequests();
 }

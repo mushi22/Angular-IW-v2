@@ -46,6 +46,9 @@
                 <th>Requests</th>
                 <th>&nbsp;</th>
               </tr>  
+                <td>
+                    <tr> {{myDataSets.length }}</tr>
+                </td>
               <tr ng-repeat="data in myDataSets | filter:query2">
                 <td>{{ data.get('datasetName') }}</td>
                 <td>{{ data.get('datasetNotes') }}</td>
@@ -54,14 +57,17 @@
                 <td>{{ book.get('requestCount') }}</td> -->
                 <td>
                   <ul>
-                    <li><a href="">Edit</a></li>
-                    <li ng-show="book.get('status') == 'Available'"><a href="">Delete</a></li>
+                   <button class="btn" ng-click="getDataPoint(data)">DataPoint</button>
+                      
+                      <li><a href="">Edit</a></li>
+                   <!-- <li ng-show="book.get('status') == 'Available'"><a href="">Delete</a></li> -->
+                     <!-- <li ng-show="getDataPoint(data)"> test</li> -->
                   </ul>
-                </td>
+                </td>  
               </tr>
             </table>
             
-            <table class="table">
+      <!--      <table class="table">
                 <tr>
                     <th>Column 1</th>
                     <th>Column 2</th>
@@ -73,17 +79,17 @@
                     <td>dfds</td>
                     <td> sdsfgdg</td>
                 </tr>
-                <tr ng-repeat="data in myDataSets">
+                <tr ng-repeat="data in myDataSets2">
                     <td>{{data.get('datasetOwner') }}</td>
                    <td>{{data.get('objectid')}}</td> 
-                    <!-- <div ng-show="getDataPoint(data)">
+                    <div ng-show="getDataPoint(data)">
                          
-                    </div>-->
+                    </div>
                     <td></td>
                 </tr>
                 
                 
-            </table>
+            </table> -->
             
           </div>
           </br>

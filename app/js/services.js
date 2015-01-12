@@ -129,21 +129,82 @@ angular.module('bookappServices', ['ngResource'])
         });
       },
         
-      getmyDataPoint: function getMyDataPoint(datapointid, callback) {
+      getmyDataPoint: function getMyDataPoint(datapoint, callback) {
           
+          console.log("starting datapoint service");
+          
+          
+          //var datapointid = datapoint.id;
+         // console.log(datapointid);
+          
+          
+
+          
+         var query = new Parse.Query(Datapoint);
+          
+         // query.include('inDataset');
+          
+        query.equalTo('inDataset', datapoint);
+          query.find({
+              success: function(results) {
+                  console.log("success");
+                  console.log(results);
+                  callback(results);
+                //  alert("found some here " + results);
+              },
+              error: function(error) {
+                  alert("Error: no datapoint found " + error.message);
+              }
+          });
+          
+          //var myDataSet = new Parse.Query(Dataset);
+          //myDataset.equalTo("datasetOwner", );
+
+                
+
+       /*   var datasetid = datapoint.id
+          
+        var query = new Parse.Query(Datapoint);
+
+          query.equalTo("user", {
+                __type: "Pointer",
+                className: "__Dataset",
+                objectId: datasetOwner
+            });
+
+          query.find({
+              success: function(results) {
+                  console.log("success");
+                  console.log(results);
+                  callback(results);
+                  alert("found some here " + results);
+              },
+              error: function(error) {
+                  alert("Error: no datapoint found " + error.message);
+              }
+            
+          });*/
+         // var query2 = new Parse.Query(Dataset);
+        //  query2
+          
+          
+      /*    
+          var datasetid = datapoint.id;
+         console.log(datasetid);
           var query = new Parse.Query(Datapoint);
-          query.equalTo("inDataset". datapointid);
+          query.equalTo("inDataset", query2);
           console.log("query set to datapoint");
           query.find({
               success: function(results) {
                   console.log("success");
+                  console.log(results);
                   callback(results);
               },
               error: function(error) {
                   alert("Error: no datapoint found " + error.message);
               }
             
-          });
+          });*/
     },
                      
         
