@@ -38,6 +38,14 @@
               Search: <input ng-model="query2">
             </div>
             </br>
+            <ul class="nav nav-pills nav-stacked" >
+                
+                <div ng-repeat="data in myDataSets">
+                    <li role="presentation"><a href="#/items">{{data.get('datasetName')}}</a></li>
+
+                </div>
+                
+            </ul>
             <table class="table">
               <tr>
                 <th>Name</th>
