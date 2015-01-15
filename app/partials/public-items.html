@@ -71,9 +71,25 @@
                    <!-- <li ng-show="book.get('status') == 'Available'"><a href="">Delete</a></li> -->
                      <!-- <li ng-show="getDataPoint(data)"> test</li> -->
                   </ul>
-                </td>  
+                </td>
+                 
               </tr>
             </table>
+            <tabe class="table">
+                 <tr>
+                <th>Name</th>
+                <th>Status</th>
+                <th>Location</th>
+                <th>Requests</th>
+                <th>&nbsp;</th>
+              </tr>
+              <tr ng-repeat="data in myDataSets2 | filter:query2">
+                <td>{{ data.get('datapointName') }}</td>
+                <td>{{ data.get('datapointNotes') }}</td>
+                <td> {{data.get('inDataset') }}</td>    
+            </tr>
+            
+            </tabe>
             
       <!--      <table class="table">
                 <tr>

@@ -17,6 +17,8 @@ angular.module('bookappServices', ['ngResource'])
     
     //Caoche list of users dataSets
     var myDataSet = [];
+    
+    var oneDataSet = [];
 
     // Define parse model and collection for Book records
     var Book = Parse.Object.extend("Book");
@@ -87,7 +89,7 @@ angular.module('bookappServices', ['ngResource'])
       },
 
     
-        
+      
         
       // Get all public books
       getBooks : function getBooks(callback) {
@@ -127,6 +129,37 @@ angular.module('bookappServices', ['ngResource'])
             alert("Error: " + error.message);
           }
         });
+      },
+
+      TestingMyDataPoint : function TestingMyDataPoint(callback) {
+        var query = new Parse.Query(Datapoint);
+          //console.log(user);
+        query.equalTo("datapointName", "Test");
+        // use the find method to retrieve all books
+        query.find({
+          success : function(results) {
+         //   for (var i=0; i<results.length; i++)
+           // { 
+             // myDataSet[i]  = results[i].get('datasetName');
+            //}
+            //  console.log(results);
+            callback(results);
+          },
+          error: function(error) {
+            alert("Error: " + error.message);
+          }
+        });
+        
+    
+      },
+        
+    
+      storeDataSet: function storeDataSet(dataset, callback) {
+          console.log(dataset);
+          
+         // oneDataSet = dataset;
+          
+          callback(dataset);
       },
         
       getmyDataPoint: function getMyDataPoint(datapoint, callback) {
