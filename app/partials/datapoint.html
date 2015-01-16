@@ -49,8 +49,8 @@
                           <i class="fa fa-th"></i>
                           <span>Data Tables</span>
                       </a>
-                      <ul class="sub" ng-repeat="data in myDataSets">
-                          <li><a  href="#/datapoint">{{ data.get('datasetName') }}</a></li>
+                     <ul class="sub" ng-repeat="data in myDataSets">
+                          <li><a ng-click="dataset(data)" href="#/datapoint" >{{ data.get('datasetName') }}</a></li>
                       </ul>
                   </li>
                   
@@ -89,7 +89,7 @@
                                    
                                   <tr ng-repeat="data in TestingDataPoints" >
                                     <td>{{ data.get('datasetName') }}</td>
-                                    <td>{{ test.get('datasetNotes') }}</td>
+                                    <td>{{ data.get('datasetNotes') }}</td>
                                <!--     <td> {{test.get('datasetOwner') }}</td>  
                                 <td>{{ book.get('location') }}</td>
                                     <td>{{ book.get('requestCount') }}</td> -->
