@@ -6,11 +6,18 @@
  * Login controller for the app
  */
 function LoginCtrl($scope, $location, ParseService) {
+	$.backstretch("img/login-bg.jpg", {speed: 1000});
+	console.log("start login process");
   // Perform user login using back-end service
 	$scope.login = function() {
+		console.log("run login function");
 		ParseService.login($scope.login_username, $scope.login_password, function(user) {
-      // When service call is finished, navigate to items page
-      $location.path('/datasets');
+      	// When service call is finished, navigate to items page
+      	console.log("Taking you to data path now.");
+      	
+      	$location.path('/data');
+      	
+      	$scope.$apply()
     });
 	}
 
@@ -32,208 +39,93 @@ function LoginCtrl($scope, $location, ParseService) {
 }
 LoginCtrl.$inject = ['$scope', '$location', 'ParseService', '$rootScope']
 
-/**
- * Main controller for the app
- */
-
-/*function DataSetCrtl($scope, $location, ParseService, $rootScope) {
-  $scope.getMyDataSet = function() {
-    ParseService.getMyDataSet(function(results) {
-      $scope.$apply(function() {
-         // console.log(results);
-        $scope.myDataSets = results;
-      })
-    });
-  }                
-
-$rootScope.getMyDataSets = [];
-$scope.getMyDataSet();
-}
-DataSetCrtl.$inject = ['$scope', '$location', 'ParseService', '$rootScope']
-                
-
-function DataPointCrtl($scope, $location, ParseService, $rootscope) {
-    
-}
-DataPointCrtl.$inject = ['$scope', '$location', 'ParseService', '$rootScope']*/
-
-
 
 
 function MainCtrl($scope, $location, ParseService, $rootScope) {
+	$.backstretch("img/bg.jpg", {speed: 10});
+	$scope.items = ['dashboard', 'dataset', 'device'];
+	  $scope.subview = $scope.items[0];
+
+    //var commonObject;
+    $scope.init = function() {
+    	$scope.user = ParseService.getUser();
+  	}
+
+
+   	// Fetch the list datasets from the backend service
+   	$scope.getUserDatasetList = function() {
+   		ParseService.getMyDataSet(function(results) {
+    		console.log("Getting User Dataset List");
+      		$scope.$apply(function() {
+        		$scope.myDataSets = results;
+      		})
+    	});
+  	}
+  
+$scope.dashboard = function() {
+	console.log("Accessing Dashboard: ");
+	$scope.subview = $scope.items[0];
+} 
+
+$scope.devices = function() {
+	console.log("Accessing Dashboard: ");
+	$scope.subview = $scope.items[2];
+}  
+  
+$scope.dataset = function(dataset) {
+	console.log("Accessing Dataset: " + dataset.attributes.datasetName);
+    /*   ParseService.loadPointsForDataset(dataset, function(results) {
+    	$scope.currentDatapoints = results;
+    });*/
+    ParseService.storeDataSet(dataset, function(results) {
+    	$scope.currentDataset = results;             
+    });
     
- var commonObject;
-    
-  $scope.init = function() {
-    $scope.user = ParseService.getUser();
-  }
-
-  // Fetch the list of public books from the backend service
-  $scope.getBooks = function() {
-
-    ParseService.getBooks(function(results) {
-      $scope.$apply(function() {
-        $scope.bookList = results;
-      });
+ 
+    console.log("entering current datapoints "+ dataset);
+   ParseService.loadPointsForDataset(dataset, function(results) {
+       
+    	$scope.currentDatapoints = results;
+        console.log($scope.currentDatapoints);
     });
-  }
-
-   // Fetch the list datasets from the backend service
-  $scope.getMyDataSet = function() {
-    ParseService.getMyDataSet(function(results) {
-      $scope.$apply(function() {
-         // console.log(results);
-        $scope.myDataSets = results;
-      })
-    });
-  }
-  
-  $scope.TestingMyDataPoint = function() {
-    ParseService.TestingMyDataPoint(function(results) {
-        $scope.$apply(function() {
-         // console.log(results);
-        $scope.myDataSetPage = results;
-      })
-    });                      
-  }
-  
-  $scope.getDataPoint = function(dataset) {
-    console.log("In Data Point");
-      //console.log(dataset);
-      ParseService.getmyDataPoint(dataset, function(results) {
-          //console.log("datapoint recieved");
-          $scope.$apply(function(){
-              console.log(results);
-                $scope.myDataPoints = results;
-              console.log(myDataPoints[1]);
-          })
-          $location.path('/datapoint');
-
-      });
-  }
-
-  
-    $scope.TestShit = function () {
-        console.log("blah");
-       console.log($scope.TestingDataPoints);
-        console.log("balhesfd");
-
-  }
-  $scope.dataset = function(dataset) {
-   
-      console.log(dataset);
-      console.log("fdsfdfs");
-      ParseService.storeDataSet(dataset, function(results) {
-           $scope.TestingDataPoints = results;             
-        
-
-                    });   
-        
-                console.log($scope.TestingDataPoints);
-                console.log("calling thinfsadsad");
-                $scope.TestShit();
-               // $location.path('/datapoint');
-
-  }
-  
-  
-  
- /*$scope.testing = function () {
-    console.log("testing");
-    ParseService.getMyDataSet(function(results) {
-      $scope.$apply(function() {
-       //   console.log(results);
-        $scope.myDataSets2 = results;
-      })
-    });
-  }*/
-
-  /*
-  // Fetch the list books from the backend service
-  $scope.getMyBooks = function() {
-    ParseService.getMyBooks(function(results) {
-      $scope.$apply(function() {
-        $scope.myBooks = results;
-      })
-    });
-  }
-
-  // Fetch the list of book requests from the backend service
-  $scope.getRequests = function() {
-    ParseService.getRequests(function(results) {
-      $scope.$apply(function() {
-        $scope.requests = results;
-      })
-    });
-  }
-
-  // Navigate to add book form
-  $scope.add = function() {
-    $location.path('/add');
-  }
-
-  // Create a new book request and refresh the book list
-  $scope.borrow = function(book) {
-    ParseService.borrow(book, function(result) {
-      alert("Borrow request sent to owner!");
-      $scope.$apply(function() {
-        book = result;
-      })
-    });
-  }
-
-  // Accept a book request
-  $scope.accept = function(request) {
-    ParseService.accept(request, function(result) {
-      $scope.$apply(function() {
-        request = result;
-      })
-    });
-  }
-
-  // Reject a book request
-  $scope.reject = function(request) {
-    ParseService.reject(request, function(result) {
-      $scope.$apply(function() {
-        request = result;
-      })
-    });
-  }
-
-  // Add a new book record to Parse backend service
-  $scope.addBook = function() {
-    ParseService.addBook($scope.name, $scope.status, $scope.visibility, $scope.location, function() {
-      $location.path('/items');
-    });
-  }
-
-  // logs the user out and re-direct to login page
- // $scope.logout = function() {
-   // ParseService.logout();
-//    $location.path('/login');
-//  }
+    $scope.subview = $scope.items[1];
+      // $location.path('/datapoint');
+      
+}
 
  
+
+  
+  // logs the user out and re-direct to login page
+ $scope.logout = function() {
+      ParseService.logout();
+      console.log("current user: " + $scope.user);
+      $location.path('/login');
+    }
+  
+
+  
   /**
    * On startup...
    */
-  $scope.bookList = [];
-  $scope.myBooks = [];
+    
+  $scope.currentDataset;
+  $scope.currentDatapoints = [];
   $scope.myDataSets = [];
   $scope.myDataPoints = [];    
   $scope.requests = [];
   $scope.myDataSetPage = [];
   $scope.init();
-  $scope.getBooks();
-  $scope.getMyDataSet();
- // $scope.testing();
-  //$scope.getMyBooks();
-  //$scope.getRequests();
+
+  $scope.getUserDatasetList();
 
   $scope.TestingDataPoints = [];
-  $scope.TestingMyDataPoint(); 
-  //$scope.TestShit();
+  
 }
 MainCtrl.$inject = ['$scope', '$location',  'ParseService', '$rootScope']
 
-
+function DatasetCtrl($scope, $location, ParseService, $rootScope) {
+		console.log("Dataset Control Loaded");	
+		console.log($scope.currentDataset);
+}
+DatasetCtrl.$inject = ['$scope', '$location',  'ParseService', '$rootScope']

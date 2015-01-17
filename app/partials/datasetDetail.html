@@ -1,0 +1,28 @@
+<div class="row mt">
+	<h2 class="dataset-name blue"> {{currentDataset.get('datasetName')}} </h2>
+	<span class="dataset-notes"> Notes: {{currentDataset.get('datasetNotes')}} </span>
+	<div class="right flushright details dataset-create">  
+		<div>Created: {{currentDataset.get('createdDate')}}</div>
+		<div>Modified: {{currentDataset.get('modifiedDate')}} </div>
+        <div> Checking current datapoints {{currentDatapoints.length }} </div>
+		<a href="" class="btn-theme05 btn clear-fix"><span><i class="fa fa-cloud-download"></i> Download</span></a>
+		<a href="" class="btn-theme03 btn "><span><i class="fa fa-share"></i> Share</span></a>
+	</div>
+</div>
+
+	
+<table class="table">
+	<tr>
+		<th>Date / Time</th>
+	    <th>Status</th>
+	    <th>Location</th>
+	    <th>Requests</th>
+	</tr>  
+	<tr ng-repeat="data in currentDatapoints" >
+		<td>{{ data.get('created') }}</td>
+	    <td>{{ data.get('datapointName') }}</td>
+	    <td>{{ data.get('id') }}</td>
+	    <td>{{ data.get('datapointNotes') }}</td>
+	</tr>
+	</table>
+</div><!-- /col-lg-9 END SECTION MIDDLE --*>

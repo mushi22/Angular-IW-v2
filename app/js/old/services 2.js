@@ -118,12 +118,8 @@ angular.module('bookappServices', ['ngResource'])
         // use the find method to retrieve all books
         query.find({
           success : function(results) {
-         //   for (var i=0; i<results.length; i++)
-           // { 
-             // myDataSet[i]  = results[i].get('datasetName');
-            //}
-            //  console.log(results);
             callback(results);
+            console.log("Datasets Returned:" + results.length)
           },
           error: function(error) {
             alert("Error: " + error.message);

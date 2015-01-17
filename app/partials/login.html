@@ -1,16 +1,43 @@
-<div>
-  <form class="login_form">
-    <h2>Log In</h2>
-    Username </br><input type="text" ng-model="login_username"/></br>
-    Password </br><input type="password" ng-model="login_password"/></br>
-    <button class='btn' ng-click="login()" ng-model="login_btn">Log In</button>
-  </form>
- <!-- <form class="signup_form">
-    <h2>Sign Up</h2>
-    Username </br><input type="text" ng-model="signup_username"/></br>
-    Create a Password </br><input type="password" ng-model="signup_password"/></br>
-    <button class='btn' ng-click="signUp()" ng-model="signup_btn">Sign Up</button>
-  </form>
-  </br>
-  <button class='btn' ng-click="FB_login()">Connect with Facebook</button> -->
+<div class="login-bg" id="login-page">
+	<div class="container">
+		<form class="form-login">
+			<h2 class="form-login-heading"><img src="img/instrument-works.png"></h2>
+			<div class="login-wrap">
+				<input type="text" ng-model="login_username" class="form-control" placeholder="Username" name="user" id="user" autofocus /></br>
+				<input type="password" ng-model="login_password" class="form-control" placeholder="Password" name="passwd" id="passwd"  /></br>	
+				<button ng-click="login()" ng-model="login_btn" class="btn-theme05 btn-block btn"><i class="fa fa-lock"></i> login</button>             
+			
+			<hr>
+			<div class="registration">
+			    Don't have an account?<br/>
+			    <a class="" href="#">
+			        Find out how to get one.
+			    </a>
+			</div>
+			</div>
+		</form>	
+	</div>
 </div>
+	          <!-- Modal 
+	          <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
+	              <div class="modal-dialog">
+	                  <div class="modal-content">
+	                      <div class="modal-header">
+	                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	                          <h4 class="modal-title">Forgot Password ?</h4>
+	                      </div>
+	                      <div class="modal-body">
+	                          <p>Enter your e-mail address below to reset your password.</p>
+	                          <input type="text" name="email" placeholder="Email" autocomplete="off" class="form-control placeholder-no-fix">
+	
+	                      </div>
+	                      <div class="modal-footer">
+	                          <button data-dismiss="modal" class="btn btn-default" type="button">Cancel</button>
+	                          <button class="btn btn-theme" type="button">Submit</button>
+	                      </div>
+	                  </div>
+	              </div>
+	          </div>-->
+	          <!-- modal -->
+	
+	      </form>	  	
