@@ -2,11 +2,10 @@
 	<h2 class="dataset-name blue"> {{currentDataset.get('datasetName')}} </h2>
 	<span class="dataset-notes"> Notes: {{currentDataset.get('datasetNotes')}} </span>
 	<div class="right flushright details dataset-create">  
-		<div>Created: {{currentDataset.get('createdDate')}}</div>
-		<div>Modified: {{currentDataset.get('modifiedDate')}} </div>
-        <div> Checking current datapoints {{currentDatapoints.length }} </div>
+		<div>Created: {{currentDataset.get('createdDate') | date:'dd/MM/yy HH:mm:ss'}}</div>
+		<div>Modified: {{currentDataset.get('modifiedDate') | date:'dd/MM/yy HH:mm:ss'}} </div>
 		<a href="" class="btn-theme05 btn clear-fix"><span><i class="fa fa-cloud-download"></i> Download</span></a>
-		<a href="" class="btn-theme03 btn "><span><i class="fa fa-share"></i> Share</span></a>
+		<a ng-click="refresh()" href="" class="btn-theme03 btn "><span><i class="fa fa-share"></i> Share</span></a>
 	</div>
 </div>
 
@@ -14,15 +13,25 @@
 <table class="table">
 	<tr>
 		<th>Date / Time</th>
-	    <th>Status</th>
-	    <th>Location</th>
-	    <th>Requests</th>
+	    <th>Temperature</th>
+	    <th>IR Temperature</th>
+	    <th>Pressure</th>
+	    <th>Humidity</th>
+	    <th>Accelerometer</th>
+	    <th>Gyroscope</th>
+	    <th>Magnetometer</th>
 	</tr>  
-	<tr ng-repeat="data in currentDatapoints" >
-		<td>{{ data.get('created') }}</td>
-	    <td>{{ data.get('datapointName') }}</td>
-	    <td>{{ data.get('id') }}</td>
-	    <td>{{ data.get('datapointNotes') }}</td>
+	<tr class="details" ng-repeat="data in currentDatapoints" >
+		<td>{{ data.get('created') | date:'dd/MM/yy HH:mm:ss' }} 
+		<a class="tooltips" href="#"><i class="fa fa-info-circle blue table-icon"></i><span class="details">{{ data.get('datapointName') }} </span></a>
+		</td>
+	    <td>{{ data.get("devices")[0].get('temperature') }}</td>
+	    <td>{{ data.get("devices")[0].get('irTemperature'); }}</td>
+	    <td>{{ data.get("devices")[0].get('pressure'); }}</td>
+	    <td>{{ data.get("devices")[0].get('humidity'); }}</td>
+	    <td>({{ data.get("devices")[0].get('AccelerometerX'); }}, {{ data.get("devices")[0].get('AccelerometerY'); }}, {{ data.get("devices")[0].get('AccelerometerZ'); }})</td>
+	    <td>({{ data.get("devices")[0].get('GyroscopeX'); }}, {{ data.get("devices")[0].get('GyroscopeY'); }}, {{ data.get("devices")[0].get('GyroscopeZ'); }})</td>
+	    <td>({{ data.get("devices")[0].get('MagnetometerX'); }}, {{ data.get("devices")[0].get('MagnetometerY'); }}, {{ data.get("devices")[0].get('MagnetometerZ'); }})</td>
 	</tr>
 	</table>
 </div><!-- /col-lg-9 END SECTION MIDDLE --*>

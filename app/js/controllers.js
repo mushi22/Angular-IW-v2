@@ -55,7 +55,7 @@ function MainCtrl($scope, $location, ParseService, $rootScope) {
    	// Fetch the list datasets from the backend service
    	$scope.getUserDatasetList = function() {
    		ParseService.getMyDataSet(function(results) {
-    		console.log("Getting User Dataset List");
+    		//console.log("Getting User Dataset List");
       		$scope.$apply(function() {
         		$scope.myDataSets = results;
       		})
@@ -74,26 +74,68 @@ $scope.devices = function() {
   
 $scope.dataset = function(dataset) {
 	console.log("Accessing Dataset: " + dataset.attributes.datasetName);
-    /*   ParseService.loadPointsForDataset(dataset, function(results) {
-    	$scope.currentDatapoints = results;
-    });*/
     ParseService.storeDataSet(dataset, function(results) {
     	$scope.currentDataset = results;             
     });
     
- 
-    console.log("entering current datapoints "+ dataset);
-   ParseService.loadPointsForDataset(dataset, function(results) {
-       
+    ParseService.loadPointsForDataset(dataset, function(results) {
+    	console.log("EE");
+    	var out = new Array();
     	$scope.currentDatapoints = results;
-        console.log($scope.currentDatapoints);
+       	for (var i = 0; i < results.length; i++) {
+    		var temperature = $scope.currentDatapoints[i].get("devices")[0].get('temperature');
+    		var devices = results[i].get("devices")[0].get('humidity');
+    		console.log(temperature + " | " + devices );
+    		
+    	}
+    	console.log(out);
+    	$scope.output;
+    	//console.log(device);
+    	//$scope.subview = $scope.items[1];
+    	$scope.$apply()
     });
-    $scope.subview = $scope.items[1];
-      // $location.path('/datapoint');
-      
+      $scope.subview = $scope.items[1];
 }
 
- 
+
+$scope.getDevices = function() {
+    
+   // console.log("Getting devices")
+    ParseService.getUserDevices( function(results) {
+        
+        $scope.$apply(function() {
+                //console.log("results");
+               // console.log(results);
+        		$scope.myDevices = results;
+         })
+    
+    });
+}
+
+
+$scope.getCurrentDevice = function(device) {
+    
+    ParseService.storeDevice(device, function(results) {
+    	$scope.currentDevice = results;             
+    });
+    	$scope.subview = $scope.items[2];
+
+    
+}
+    
+$scope.refresh = function() {
+	console.log("REFRESH");
+	$scope.subview = $scope.items[1];
+	$scope.$apply();
+}
+
+//$scope.listDevices = function() {
+//	console.log("Accessing Devices");
+//	ParseService.getUserDevices(function(results) {
+//		$scope.userDevices = results;
+//	});
+//
+//}
 
   
   // logs the user out and re-direct to login page
@@ -103,23 +145,26 @@ $scope.dataset = function(dataset) {
       $location.path('/login');
     }
   
+ 
+ 
 
   
   /**
    * On startup...
    */
-    
-  $scope.currentDataset;
-  $scope.currentDatapoints = [];
+
   $scope.myDataSets = [];
   $scope.myDataPoints = [];    
   $scope.requests = [];
   $scope.myDataSetPage = [];
   $scope.init();
+  $scope.myDevices = [];
 
   $scope.getUserDatasetList();
+  $scope.getDevices();
+//  $scope.devices();
 
-  $scope.TestingDataPoints = [];
+//  $scope.TestingDataPoints = [];
   
 }
 MainCtrl.$inject = ['$scope', '$location',  'ParseService', '$rootScope']

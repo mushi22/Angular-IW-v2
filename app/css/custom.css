@@ -58,12 +58,21 @@ ul.top-menu > li > .logout:hover {
 
 }
 
-/*.dataset-name, .dataset-notes, .dataset-create{
-	border: 1px solid #333;
-	
-}*/
-.dataset-create{
-display: inline-block;
+.table-icon{
+	padding-left: 5px ;
+	padding-right: 5px ;
+}
+
+#sidebar {
+    background: #00345F;
+}
+
+#sidebar h5 {
+	color: #f7f7f7;
+}
+
+ul.sidebar-menu li ul.sub li.active a {
+    color: #007BC3;
 }
 
 /* BASE STYLES - CLEARFIX
@@ -116,4 +125,45 @@ display: inline-block;
 }
 .icon { width: 18px; padding-right: 3px; padding-top: 3px; background: transparent; margin-bottom: -3px; }
 
+[data-tooltip],
+.tooltip {
+  position: relative;
+  cursor: pointer;
+}
 
+/* Base styles for the entire tooltip */
+a.tooltips {
+  position: relative;
+  display: inline;
+}
+a.tooltips span {
+  position: absolute;
+  width:140px;
+  color: #FFFFFF;
+  background: #000000;
+  height: 22px;
+  line-height: 22px;
+  text-align: center;
+  visibility: hidden;
+  border-radius: 4px;
+}
+a.tooltips span:after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 100%;
+  margin-top: -8px;
+  width: 0; height: 0;
+  border-right: 8px solid #000000;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+}
+a:hover.tooltips span {
+  visibility: visible;
+  opacity: 1;
+  left: 100%;
+  top: 50%;
+  margin-top: -11px;
+  margin-left: 15px;
+  z-index: 999;
+}
