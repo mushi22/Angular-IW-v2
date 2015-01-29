@@ -38,6 +38,35 @@ function LoginCtrl($scope, $location, ParseService) {
   }
   
   
+  
+  $scope.modalUpdate = function() {
+
+    console.log("in modal");
+    var modalInstance = $modal.open({ //breaks on this like at .open
+      templateUrl: 'SimpleModal.html',
+      controller: function($scope, $modalInstance) {
+
+      }
+      /* size: size,
+  resolve: {
+    items: function () {
+      return $scope.items;
+    }
+  }*/
+    });
+
+    modalInstance.result.then(function(selectedItem) {
+      $scope.selected = selectedItem;
+    }, function() {
+      $log.info('Modal dismissed at: ' + new Date());
+    });
+  };
+  
+  
+  
+  
+  
+ 
 }
 LoginCtrl.$inject = ['$scope', '$location', 'ParseService', '$rootScope']
 

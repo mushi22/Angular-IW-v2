@@ -58,11 +58,27 @@
                                 </a>
                                 <div ng-show="showDevices">
                                 <ul class="" ng-repeat="device in myDevices">
-                                    <li><a ng-click="getCurrentDevice(device)" href="" >{{ device.get('customName') }}</a>
+                                    <li><a ng-click="getCurrentDevice(device)" href="" >
+                                        
+                                        
+                                        <div class="bodycontainer scrollable">
+                                            <table class="table table-hover table-striped table-condensed table-scrollable">
+    <tbody>
+                                        
+                                        {{ device.get('customName') }}
+        
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        
+                                            
+                                        
+                                        </a>
                                     </li>
                                 </ul>
                                 </div>
                             </li>
+                  
                             <!--<li>
                                 <a ng-click="devices()" class="" href="">
                                 	<i class="fa fa-cogs"></i>
