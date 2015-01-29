@@ -36,6 +36,8 @@ function LoginCtrl($scope, $location, ParseService) {
       $location.path('/items');
     });
   }
+  
+  
 }
 LoginCtrl.$inject = ['$scope', '$location', 'ParseService', '$rootScope']
 
@@ -51,6 +53,8 @@ function MainCtrl($scope, $location, ParseService, $rootScope) {
     	$scope.user = ParseService.getUser();
   	}
 
+    
+  
 
    	// Fetch the list datasets from the backend service
    	$scope.getUserDatasetList = function() {
@@ -174,3 +178,4 @@ function DatasetCtrl($scope, $location, ParseService, $rootScope) {
 		console.log($scope.currentDataset);
 }
 DatasetCtrl.$inject = ['$scope', '$location',  'ParseService', '$rootScope']
+

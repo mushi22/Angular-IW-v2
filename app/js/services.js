@@ -57,6 +57,7 @@ angular.module('iwServices', ['ngResource'])
       // Logout current user
       logout : function logout(callback) {
         Parse.User.logOut();
+          user = null;
       },
 
     
@@ -65,7 +66,7 @@ angular.module('iwServices', ['ngResource'])
         // Create a new Parse Query to search Book records by ownerid
         var query = new Parse.Query(Dataset);
           //console.log(user);
-        query.equalTo("datasetOwner", user);
+        query.equalTo("datasetOwner", loggedInUser);
         // use the find method to retrieve all books
         query.find({
           success : function(results) {
