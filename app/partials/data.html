@@ -63,12 +63,12 @@
                                 </ul>
                                 </div>
                             </li>
-                            <!--<li>
-                                <a ng-click="devices()" class="" href="">
+                            <li>
+                                <a ng-click="testTable()" class="" href="">
                                 	<i class="fa fa-cogs"></i>
-                                    <span>Devices</span>
+                                    <span>Test Table</span>
                                 </a>
-                            </li> -->
+                            </li>
                         </ul>
                         <!-- sidebar menu end-->
                             </section>
@@ -81,6 +81,7 @@
 		          	<div ng-switch-when="dashboard" ng-include="'partials/dashboardDetail.html'"></div>
 		          	<div ng-switch-when="dataset" ng-include="'partials/datasetDetail.html'"></div>
 		          	<div ng-switch-when="device" ng-include="'partials/deviceDetail.html'"></div>
+                    <div ng-switch-when="table" ng-include="'partials/TestTable.html'"></div>
 		          </div>
 		          	<!-- Include View Content. -->
 		            	

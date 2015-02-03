@@ -57,7 +57,7 @@ LoginCtrl.$inject = ['$scope', '$location', 'ParseService', '$rootScope']
 
 function MainCtrl($scope, $location, ParseService, $rootScope) {
 	$.backstretch("img/bg.jpg", {speed: 10});
-	$scope.items = ['dashboard', 'dataset', 'device'];
+	$scope.items = ['dashboard', 'dataset', 'device', 'table'];
 	  $scope.subview = $scope.items[0];
 
     //var commonObject;
@@ -88,6 +88,11 @@ $scope.devices = function() {
 	$scope.subview = $scope.items[2];
 }  
   
+$scope.testTable = function() {
+
+    $scope.subview = $scope.items[3];
+}
+
 $scope.dataset = function(dataset) {
 	console.log("Accessing Dataset: " + dataset.attributes.datasetName);
     ParseService.storeDataSet(dataset, function(results) {
