@@ -11,13 +11,6 @@
 
         
         
-
-        
-        
-        
-        
-        
-         <a href ng-click="ctrl.showModal()">Show the modal</a>
         
         
         
@@ -30,15 +23,39 @@
         
 			<div class="registration">
 			    Don't have an account?<br/>
-			    <a class="" href="#">
-			        Find out how to get one.
+<button class="btn" ng-click="open()"> Find out how to get one.</button>			        
 			    </a>
+                
+            
+
+<div modal="showModal" close="cancel()">
+    <div class="modal-header">
+        <h4>We are currently in closed beta. If you would like to know more about Instrument Works Cloud and sign up to a beta account please email info@instrument-works.com</h4>
+    </div>
+    <div class="modal-body">
+    
+    <button class="btn btn-success" ng-click="ok()">Okay</button>
+        <button class="btn" ng-click="cancel()"> Cancel</button>
+    </div>
+  <!--  <div class="modal-body">
+        <p> We are currently in closed beta. If you would like to know more about Instrument Works Cloud and sign up to a beta account please email info@instrument-works.com</p>
+    </div> -->
+   <!-- <div class="modal-footer">
+        <button class="btn btn-success" ng-click="ok()">Okay</button>
+        <button class="btn" ng-click="cancel()"> Cancel</button>
+    </div> -->
+
+
+
+</div>
+	   
 			</div>
 			</div>
-		</form>	
+		</form>
 	</div>
 </div>
-	            <!-- Modal
+
+         <!-- Modal
 	          <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
 	              <div class="modal-dialog">
 	                  <div class="modal-content">

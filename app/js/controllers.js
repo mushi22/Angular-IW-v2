@@ -37,6 +37,18 @@ function LoginCtrl($scope, $location, ParseService) {
     });
   }
   
+  $scope.open = function() {
+      $scope.showModal = true;
+  }
+  
+  $scope.cancel = function() {
+      $scope.showModal = false;
+  }
+  
+  $scope.ok = function() {
+      $scope.showModal = false;
+  }
+  
   
 }
 LoginCtrl.$inject = ['$scope', '$location', 'ParseService', '$rootScope']
