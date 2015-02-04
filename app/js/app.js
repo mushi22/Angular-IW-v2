@@ -2,7 +2,7 @@
 
 /* App Module */
 
-angular.module('iw-app', ['ngRoute','iwFilters', 'iwServices', 'ui.bootstrap', 'ui.bootstrap.modal']).
+angular.module('iw-app', ['ngRoute','iwFilters', 'iwServices', 'ui.bootstrap', 'ui.bootstrap.modal','ui.grid']).
   config(['$routeProvider', function($routeProvider) {
   $routeProvider.
   	  when('/login', {templateUrl: 'partials/login.html',   controller: LoginCtrl}).
