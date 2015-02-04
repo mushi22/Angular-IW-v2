@@ -78,10 +78,25 @@
           <section id="main-content"  >
 	          <section class="wrapper">          
 		          <div ng-switch="subview" style="float:left">
-		          	<div ng-switch-when="dashboard" ng-include="'partials/dashboardDetail.html'"></div>
+                      
+                      <div ng-switch-when="dashboard">
+                            <div ng-include="'partials/dashboardDetail.html'"></div>
+                        </div>
+                      <div ng-switch-when="dataset">
+                            <div ng-include="'partials/datasetDetail.html'"></div>
+                      </div>
+                      <div ng-switch-when="device">
+                            <div ng-include="'partials/deviceDetail.html'"></div>
+                      </div>
+                      <div ng-switch-when="testTable">
+                            <div ng-include="'partials/testTable.html'"></div>
+                      </div>
+		          <!--	<div ng-switch-when="dashboard" ng-include="'partials/dashboardDetail.html'"></div>
+                      
+                      
 		          	<div ng-switch-when="dataset" ng-include="'partials/datasetDetail.html'"></div>
 		          	<div ng-switch-when="device" ng-include="'partials/deviceDetail.html'"></div>
-                    <div ng-switch-when="testTable" ng-include="'partials/testTable.html'"></div>
+                    <div ng-switch-when="testTable" ng-include="'partials/testTable.html'"></div> -->
 		          </div>
 		          	<!-- Include View Content. -->
 		            	
